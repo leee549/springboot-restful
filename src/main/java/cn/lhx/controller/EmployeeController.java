@@ -8,11 +8,9 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -27,14 +25,14 @@ public class EmployeeController {
     private DepartmentDao departmentDao;
     @GetMapping("/emps")
     public String list(Model model){
-        List<Employee> employees = employeeDao.listAll();
+        Collection<Employee> employees = employeeDao.listAll();
         model.addAttribute("emps",employees);
 
         return "emp/list";
     }
     @GetMapping("/emp")
     public String toAddPage(Model model){
-        List<Department> departments = departmentDao.getDepartments();
+        Collection<Department> departments = departmentDao.getDepartments();
         model.addAttribute("depts",departments);
         return "emp/add";
     }
@@ -50,7 +48,7 @@ public class EmployeeController {
 
         model.addAttribute("emp",employee);
 
-        List<Department> departments = departmentDao.getDepartments();
+        Collection<Department> departments = departmentDao.getDepartments();
 
         model.addAttribute("depts",departments);
         return "emp/add";
@@ -59,6 +57,11 @@ public class EmployeeController {
     public String update(Employee employee){
         employeeDao.save(employee);
         System.out.println("修改+++++"+employee);
+        return "redirect:/emps";
+    }
+    @DeleteMapping("/emp/{id}")
+    public String delete(@PathVariable("id") Integer id){
+        employeeDao.delete(id);
         return "redirect:/emps";
     }
 

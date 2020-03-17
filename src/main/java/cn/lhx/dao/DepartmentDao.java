@@ -3,8 +3,7 @@ package cn.lhx.dao;
 import cn.lhx.entity.Department;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author lee549
@@ -12,28 +11,24 @@ import java.util.List;
  */
 @Repository
 public class DepartmentDao {
-    private static List<Department> departments = null;
+    private static Map<Integer,Department> departments = null;
 
     static {
-        departments = new ArrayList();
+        departments = new HashMap<>();
 
-        departments.add(new Department(101,"采购部"));
-        departments.add(new Department(102,"仓储部"));
-        departments.add(new Department(103,"财务部"));
-        departments.add(new Department(104,"技术部"));
-        departments.add(new Department(105,"人力资源部"));
+        departments.put(101,new Department(101,"采购部"));
+        departments.put(102,new Department(102,"仓储部"));
+        departments.put(103,new Department(103,"财务部"));
+        departments.put(104,new Department(104,"技术部"));
+        departments.put(105,new Department(105,"人力资源部"));
 
     }
-    public List<Department> getDepartments(){
-        return departments;
+    public Collection<Department> getDepartments(){
+        return departments.values();
     }
 
     public Department getDepartmentById(Integer id){
-        for (Department department:departments){
-            if (department.getId().equals(id)){
-                return department;
-            }
-        }
+
         return departments.get(id);
     }
 }

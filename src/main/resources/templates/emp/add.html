@@ -74,11 +74,11 @@
 						<div class="form-group">
 							<label>Gender</label><br/>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="1" th:checked="${emp!=null}?${emp.sex==1}">
+								<input class="form-check-input" type="radio" name="sex" value="1" th:checked="${emp!=null}?${emp.sex==1}">
 								<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender" value="0" th:checked="${emp!=null}?${emp.sex==0}">
+								<input class="form-check-input" type="radio" name="sex" value="0" th:checked="${emp!=null}?${emp.sex==0}">
 								<label class="form-check-label">女</label>
 							</div>
 						</div>
@@ -102,9 +102,9 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" th:src="@{asserts/js/jquery-3.2.1.slim.min.js}" ></script>
-		<script type="text/javascript" th:src="@{asserts/js/popper.min.js}" ></script>
-		<script type="text/javascript" th:src="@{asserts/js/bootstrap.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/asserts/js/jquery-3.2.1.slim.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/asserts/js/popper.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/asserts/js/bootstrap.min.js}" ></script>
 
 		<!-- Icons -->
 		<script type="text/javascript"  th:src="@{/asserts/js/feather.min.js}"></script>

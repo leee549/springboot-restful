@@ -14,42 +14,31 @@ import java.util.*;
  */
 @Repository
 public class EmployeeDao {
-    private static List<Employee> employees = null;
+    private static Map<Integer,Employee> employees = null;
 
     @Autowired
     private DepartmentDao departmentDao;
 
     static {
-        employees = new ArrayList<>();
-        employees.add(new Employee(1001, "AA", "123@test.com", 0, new Department(101, "采购部"), new Date()));
-        employees.add(new Employee(1002, "BB", "222@test.com", 1, new Department(102, "仓储部"), new Date()));
-        employees.add(new Employee(1003, "CC", "222@test.com", 0, new Department(103, "财务部"), new Date()));
-        employees.add(new Employee(1004, "DD", "222@test.com", 0, new Department(104, "技术部"), new Date()));
-        employees.add(new Employee(1005, "EE", "222@test.com", 1, new Department(105, "人力资源部"), new Date()));
+        employees = new HashMap<>();
+        employees.put(1001,new Employee(1001, "AA", "123@test.com", 0, new Department(101, "采购部"), new Date()));
+        employees.put(1002,new Employee(1002, "BB", "222@test.com", 1, new Department(102, "仓储部"), new Date()));
+        employees.put(1003,new Employee(1003, "CC", "222@test.com", 0, new Department(103, "财务部"), new Date()));
+        employees.put(1004,new Employee(1004, "DD", "222@test.com", 0, new Department(104, "技术部"), new Date()));
+        employees.put(1005,new Employee(1005, "EE", "222@test.com", 1, new Department(105, "人力资源部"), new Date()));
 
     }
 
-    public List<Employee> listAll() {
-        return employees;
+    public Collection<Employee> listAll() {
+        return employees.values();
     }
 
     public Employee getEmployeeById(Integer id) {
-        for (Employee employee:employees){
-            if (employee.getId().equals(id)){
-                return employee;
-            }
-        }
         return employees.get(id);
     }
 
     public Employee getEmployeeByName(String name) {
-        for (Employee employee:employees) {
-            //Employee employee = employees.get(i);
-            if (employee.getName().equals(name)) {
-                System.out.println(employee);
-                return employee;
-            }
-        }
+        employees.get(name);
         return null;
     }
     private static Integer initId = 1006;
@@ -59,9 +48,12 @@ public class EmployeeDao {
             employee.setId(initId++);
         }
         employee.setDepartment(departmentDao.getDepartmentById(employee.getDepartment().getId()));
-        employees.add(employee);
-
+        employees.put(employee.getId(),employee);
     }
+    public void delete(Integer id){
+        employees.remove(id);
+    }
+
 
 
 }
