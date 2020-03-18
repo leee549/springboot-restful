@@ -22,11 +22,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/main.html").setViewName("dashboard");
     }
 
-    // @Override
-    //     public void addInterceptors(InterceptorRegistry registry) {
-    //         registry.addInterceptor(new LoginInterceptor())
-    //                 .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/login", "/favicon.ico");
-    //     }
+    @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            registry.addInterceptor(new LoginInterceptor())
+                    .addPathPatterns("/**").excludePathPatterns("/index.html", "/", "/login", "/favicon.ico");
+        }
 
     @Bean
     public LocaleResolver localeResolver() {

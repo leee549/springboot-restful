@@ -4,6 +4,7 @@ import cn.lhx.dao.DepartmentDao;
 import cn.lhx.dao.EmployeeDao;
 import cn.lhx.entity.Department;
 import cn.lhx.entity.Employee;
+import cn.lhx.exception.UserNotExitException;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,6 +64,15 @@ public class EmployeeController {
     public String delete(@PathVariable("id") Integer id){
         employeeDao.delete(id);
         return "redirect:/emps";
+    }
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test(@RequestParam("user")String user){
+        if (user.equals("a")){
+            throw new UserNotExitException();
+        }
+        return null;
+
     }
 
 
