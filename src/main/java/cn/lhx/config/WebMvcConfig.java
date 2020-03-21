@@ -3,6 +3,8 @@ package cn.lhx.config;
 import cn.lhx.component.LoginInterceptor;
 import cn.lhx.component.MyLocaleResolver;
 import org.apache.tomcat.util.descriptor.LocalResolver;
+import org.springframework.boot.web.server.ConfigurableWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.*;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("login");
